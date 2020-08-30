@@ -5,11 +5,6 @@ var mentorSchema = new Schema({
     email: String,
     location: String,
     phone: String,
-     age:  String,
-      userId: {
-                type: Schema.Types.ObjectId,
-                ref: 'User',   
-              },
-             timestamps:{type: Date} 
+    age:  String,
     });
 module.exports = mongoose.model('Mentor', mentorSchema);

@@ -1,34 +1,43 @@
 const path = require('path');
-const mongoose = require('mongoose');
+
 const express = require('express');
-var app = express();
-var session = require('express-session');
 const bodyParser = require('body-parser');
-//require('./models/mongodb');
+const mongoose = require('mongoose');
+var session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-const flash = require('connect-flash');
-const csrf = require('csurf');
-const stemgirl = require('./controllers/stemgirl');
-const homeRoutes = require('./routes/home');
+
+//const errorController = require('./controllers/error');
+//const User = require('./models/user');
+
+const app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+//const adminRoutes = require('./routes/admin');
 const ambassadorRoutes = require('./routes/ambassador');
-app.use(homeRoutes);
-app.use(ambassadorRoutes);
-const error = require('./controllers/error');
-//  //local imports
-const isAuth = require('./middleware/is-auth');
-app.use('http://localhost:3000/images', express.static(path.join(__dirname, 'images')));
-const User = require('./models/user');
-// app.use((req, res, next) => {
-//   //res.locals.isAuthenticated = req.session.isLoggedIn;
-//   res.locals.csrfToken = req.csrfToken();
-//   next();
-// });
-app.use(flash());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+const homeRoutes = require('./routes/home');
+const stemgirlRoutes = require('./routes/stemgirl');
+const mentorRoutes = require('./routes/mentor');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use((req, res, next) => {
+//   User.findById('5bab316ce0a7c75f783cb8a8')
+//     .then(user => {
+//       req.user = user;
+//       next();
+//     })
+//     .catch(err => console.log(err));
+// });
 
+//app.use('/admin', adminRoutes);
+app.use(ambassadorRoutes);
+app.use(homeRoutes);
+app.use(stemgirlRoutes);
+app.use(mentorRoutes);
+//app.use(errorController.get404);
 const MONGODB_URI = 'mongodb://localhost:27017/stem?connectTimeoutMS=10';
  const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -42,16 +51,11 @@ app.use(
    store:store
   })
  );
- //Configuring Express middleware for the handlebars
-app.set('views', path.join(__dirname, '/views/'));
+ 
 
 
-app.set('view engine', 'ejs');
- //const csrfProtection = csrf();
-//PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 27017;
-mongoose
-  .connect(MONGODB_URI,{ useUnifiedTopology: true },(err) => {
+mongoose.connect(MONGODB_URI,{ useUnifiedTopology: true },(err) => {
     if (!err) {
     console.log('Successfully Established Connection with MongoDB')//sucess message
     }
@@ -65,8 +69,3 @@ mongoose
   .catch(err => {
     console.log(err);
   });
- 
- 
-
-
-

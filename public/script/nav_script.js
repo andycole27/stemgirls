@@ -10,5 +10,8 @@ $(document).ready(function(){
   })
   $(".get_involved").click(function(){
     $(".sidebar ul ul li").toggle('slide');
-})
+  })
+  $(".sidebar ul ul li a").click(function(){
+    $(".sidebar ul ul li").toggle('hide');
+  })
 })

@@ -1,0 +1,95 @@
+<%- include('../includes/head.ejs') %>
+
+</head>
+  <body>
+
+    <div class="content">
+      <header>
+        <div class="top">
+          <div class="stem_logo">
+            <a href="/index">
+              <img src="/assets\tentative logo-round.png"
+              alt="STEM girls logo: a glowing bulb" width="100%" height="100%">
+            </a>
+          </div>
+          <div class="nav_icon">
+            &#9776;
+          </div>
+
+          <%- include('../includes/navigation.ejs') %>
+
+        </div>
+      </header>
+
+    <main>
+
+      <div class="first_part">
+        <div class="illustrate">
+          <h1 class="mobile-h1">
+            Become a STEM Girl!
+          </h1>
+          <img src="/assets\STEM_initiative.png" width="100%" height="80%"
+          alt="Illustration of STEM Girls. ">
+        </div>
+        <div class="writeup">
+          <h1 class="desktop-h1">
+            Become a STEM Girl!
+          </h1>
+          <p>
+            <b>A STEM Girl</b> is a female student who aspire to have a career in the field of
+            STEM.
+          </p>
+          <p>
+            The opportunity is open to all Adolescent Girls and Young Women. Join us,
+            Get involved and be our STEM GIRL!
+          </p>
+          <a href="/stemgirl/add-stemgirl">
+            <button type="button" name="button">Become a STEM Girl</button>
+          </a>
+        </div>
+      </div>
+
+      <div class="form" id="form">
+        <h2>Become a STEM Girl</h2>
+        <form class="ambassador" action="/<% if (editing) { %>edit-stemgirl<% } else { %>add-stemgirl<% } %>" method="post">
+
+          <label for="name">Full Name <span>*</span></label><br>
+          <input type="text" name="fullname" placeholder="Full Name" required value="<% if (editing) { %><% stemgirl.fullname %><% } %>"><br>
+
+          <label for="email">Email <span>*</span></label><br>
+          <input type="email" name="email" placeholder="Email" required value="<% if (editing) { %><% stemgirl.email %><% } %>"><br>
+
+          <label for="location">Location <span>*</span></label><br>
+          <input type="text" name="location" placeholder="Location" required value="<% if (editing) { %><% stemgirl.location %><% } %>"><br>
+
+          <label for="phone">Phone <span>*</span></label><br>
+          <input type="text" name="phone" placeholder="Phone" required value="<% if (editing) { %><% stemgirl.phone %><% } %>"><br>
+
+          <label for="age">Age <span>*</span></label><br>
+          <input type="text" name="age" placeholder="Age" required value="<% if (editing) { %><% stemgirl.age %><% } %>"><br>
+
+          <label for="school">School <span>*</span></label><br>
+          <input type="text" name="school" placeholder="School" required value="<% if (editing) { %><% stemgirl.school %><% } %>"><br>
+
+          <label for="grade">Grade <span>*</span></label><br>
+          <input type="number" name="grade" placeholder="Grade" max="7" min="1" required value="<% if (editing) { %><% stemgirl.grade %><% } %>"><br>
+
+          <label for="skills">Pleace list any skills and experience you have that are
+            valuable to leading a STEM Girls School club in your school. <span>*</span>
+          </label><br>
+          <textarea name="name" rows="8" cols="80" required value="<% if (editing) { %><% stemgirl.name %><% } %>"></textarea><br>
+          <% if (editing) { %>
+            <input type="hidden" value="<%= stemgirl._id %>" name="stemgirlId">
+        <% } %>
+          <input type="submit" name="submit" value="<% if (editing) { %>Update <% } else { %>Add <% } %>">
+        </form>
+
+      </div>
+
+    </main>
+    <%- include('../includes/footer.ejs') %>
+    </div>
+  </body>
+  <!-- Navigation Script -->
+  <script type="text/javascript" src="/script\nav_script.js" ></script>
+</html>

@@ -5,13 +5,15 @@ const ambassador = require('../controllers/ambassador');
 //const isAuth = require('../middleware/is-auth');
 const router = express.Router();
 
-router.get('/ambassador', ambassador.getAmbassador);
+router.get('/ambassador/ambassadors', ambassador.getAmbassadors);
 
-router.post('/ambassador', ambassador.postAddAmbassador);
+router.get('/ambassador/add-ambassador', ambassador.getAddAmbassadors);
 
-// router.get('/about/index', about.getAbout);
+router.post('/add-ambassador', ambassador.postAddAmbassador);
 
-// router.get('/service/index', service.getService);
+ router.get('/ambassador/edit-ambassador/:ambassadorId', ambassador.getEditAmbassador);
+
+ router.post('/ambassador/edit-ambassador', ambassador.postEditAmbassador);
 
 // router.get('/contact/index', contact.getContact);
 
