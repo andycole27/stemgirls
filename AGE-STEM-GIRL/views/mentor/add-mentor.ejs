@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs') %>
+
+</head>
+  <body>
+
+    <div class="content">
+      <header>
+        <div class="top">
+          <div class="stem_logo">
+            <a href="/index">
+              <img src="/assets\tentative logo-round.png"
+              alt="STEM girls logo: a glowing bulb" width="100%" height="100%">
+            </a>
+          </div>
+          <div class="nav_icon">
+            &#9776;
+          </div>
+
+          <%- include('../includes/navigation.ejs') %>
+
+        </div>
+      </header>
+
+    <main>
+
+      <div class="first_part-m">
+        <div class="writeup-m">
+          <h1>
+            Become a Mentor or a Volunteer: a small move can change a lot.
+          </h1>
+          <p>
+            To be a STEM Girl <b> Volunteer/ Mentor </b>, You can sign up to organise
+            STEM Girl school club in your school, mentor a girl, or assist inorganizing
+            STEM Girls Workshop, summit and Talk show.
+          </p>
+          <p>
+            Join us and make a change now.
+          </p>
+          <a href="/mentor/add-mentor">
+            <button type="button" name="button">Become a Mentor/ Volunteer</button>
+          </a>
+        </div>
+        <div class="illustrate-m">
+          <img src="/assets\STEM_get involved to help.png" width="100%" height="70%"
+          alt="A photo of STEM Girls and their Mentors">
+        </div>
+      </div>
+
+      <div class="form" id="form">
+        <h2>Become a Mentor</h2>
+        <form class="ambassador" action="/<% if (editing) { %>edit-mentor<% } else { %>add-mentor<% } %>" method="post">
+
+          <label for="name">Full Name <span>*</span></label><br>
+          <input type="text" name="fullname" placeholder="Full Name" required value="<% if (editing) { %><% mentor.fullname %><% } %>"><br>
+
+          <label for="email">Email <span>*</span></label><br>
+          <input type="email" name="email" placeholder="Email" required value="<% if (editing) { %><% mentor.email %><% } %>"><br>
+
+          <label for="location">Location <span>*</span></label><br>
+          <input type="text" name="location" placeholder="Location" required value="<% if (editing) { %><% mentor.location %><% } %>"><br>
+
+          <label for="phone">Phone <span>*</span></label><br>
+          <input type="text" name="phone" placeholder="Phone" required value="<% if (editing) { %><% mentor.phone %><% } %>"><br>
+
+          <label for="age">Age <span>*</span></label><br>
+          <input type="text" name="age" placeholder="Age" required value="<% if (editing) { %><% mentor.age %><% } %>"><br>
+
+          <% if (editing) { %>
+            <input type="hidden" value="<%= mentor._id %>" name="mentorId">
+        <% } %>
+          <input type="submit" name="submit" value="<% if (editing) { %>Update <% } else { %>Add <% } %>">
+        </form>
+
+      </div>
+
+    </main>
+    <%- include('../includes/footer.ejs') %>
+    </div>
+ 
+  <!-- Navigation Script -->
+  <script type="text/javascript" src="/script\nav_script.js" ></script>
+</body>
+</html>
