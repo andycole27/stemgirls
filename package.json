@@ -25,5 +25,13 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemon": "^2.0.4",
     "readline": "^1.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andycole27/stemgirls.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andycole27/stemgirls/issues"
+  },
+  "homepage": "https://github.com/andycole27/stemgirls#readme"
 }
