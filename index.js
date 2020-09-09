@@ -38,7 +38,8 @@ app.use(homeRoutes);
 app.use(stemgirlRoutes);
 app.use(mentorRoutes);
 //app.use(errorController.get404);
-const MONGODB_URI = 'mongodb://localhost:27017/stem?connectTimeoutMS=10';
+//mongodb+srv://andycole:<password>@cluster0.ugulg.mongodb.net/<dbname>?retryWrites=true&w=majority
+const MONGODB_URI = `mongodb+srv://andycole:vTV2kptDzhGE1874@cluster0.ugulg.mongodb.net/stem?retryWrites=true&w=majority`;
  const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
