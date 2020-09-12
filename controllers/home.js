@@ -32,10 +32,10 @@ exports.getAbout = (req, res, next) => {
 exports.getFaqs = (req, res, next) => {
   Faqs.find()
   .then(faqs => {
-    res.render('faqs', {
+    res.render('FAQs', {
       studs: faqs,
      // pageTitle: 'STEM Girl Home',
-      path: '/faqs',
+      path: '/FAQs',
       //totalAmbassadors: totalAmbassadors
     });
   })

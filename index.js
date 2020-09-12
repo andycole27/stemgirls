@@ -39,7 +39,7 @@ app.use(stemgirlRoutes);
 app.use(mentorRoutes);
 //app.use(errorController.get404);
 //mongodb+srv://andycole:<password>@cluster0.ugulg.mongodb.net/<dbname>?retryWrites=true&w=majority
-const MONGODB_URI = `mongodb+srv://andycole:vTV2kptDzhGE1874@cluster0.ugulg.mongodb.net/stem?retryWrites=true&w=majority`;
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.ugulg.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
  const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
@@ -55,7 +55,7 @@ app.use(
  
 
 
-const port = process.env.PORT || 27017;
+//const port = process.env.PORT || 27017;
 mongoose.connect(MONGODB_URI,{ useUnifiedTopology: true },(err) => {
     if (!err) {
     console.log('Successfully Established Connection with MongoDB')//sucess message
@@ -65,7 +65,7 @@ mongoose.connect(MONGODB_URI,{ useUnifiedTopology: true },(err) => {
     }
   })
   .then(result => {
-    app.listen(3000, () => console.log(`Listening on port ${port}..`));
+    app.listen(process.env.PORT || 3000);
   })
   .catch(err => {
     console.log(err);
